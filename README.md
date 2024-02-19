@@ -75,13 +75,15 @@ El código desarrollado se divide en dos partes: el Apartado 1.1 y Apartado 1.2.
    - Divide el mensaje en el identificador del cliente y el mensaje en sí.
    - Imprime el mensaje recibido del cliente.
      **Solución -> La impresión por pantalla se realizan con print locks**
+     <img width="595" alt="image" src="https://github.com/202006359/Practica-5-Multithreading/assets/113789409/3e1bd8a5-0651-458f-b9ef-b8efa32d0a1a">
+
    - Envía una respuesta de vuelta al cliente.
 
 #### 2. Simulador de clientes (`client.ipynb`)
 1. **Importación de módulos y definición de funciones:**
    - Se importan los módulos necesarios (`socket`, `sys`, `threading`).
    - Se define `print_lock` como un objeto de bloqueo (`Lock`) de threading.
-     **Objeto clave para solucinar el porblema de impresion del Apartado 1.1, lo usaremos en cada impresion invocada dentro de un hilo**
+     **Objeto clave para solucinar el problema de impresión del Apartado 1.1, lo usaremos en cada impresion invocada dentro de un hilo**
    - Se define la función `main()` que inicia la ejecución del cliente.
    - Se define la función `send_message()` que se encarga de enviar mensajes al servidor.
 
@@ -96,6 +98,9 @@ El código desarrollado se divide en dos partes: el Apartado 1.1 y Apartado 1.2.
    - Imprime un mensaje indicando si el mensaje se envió correctamente.
    - Imprime la respuesta recibida del servidor.
    - Cierra la conexión con el servidor.
+   - Destacar el uso de print_lock ya que será llamada por distintos hilos.
+   - <img width="595" alt="image" src="https://github.com/202006359/Practica-5-Multithreading/assets/113789409/b15de057-68d4-4a6b-b3f8-f77475877037">
+
 
 ## Ejecución del código 
 1. Abre una terminal o línea de comandos en tu sistema.
