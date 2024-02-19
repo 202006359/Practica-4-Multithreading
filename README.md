@@ -54,7 +54,7 @@ El código desarrollado se divide en dos partes: el Apartado 1.1 y Apartado 1.2.
 1. **Importación de módulos y definición de funciones:**
    - Se importan los módulos necesarios (`socket`, `sys`, `traceback`, `threading`).
    - Se define `print_lock` como un objeto de bloqueo (`Lock`) de threading.
-     **Objeto clave para solucinar el porblema de impresion del Apartado 1.1, lo usaremos en cada impresion invocada dentro de un hilo**
+     **Objeto clave para solucinar el problema de impresión del Apartado 1.1, lo usaremos en cada impresión invocada dentro de un hilo.**
    - Se define la función `main()` que inicia la ejecución del servidor.
    - Se define la función `start_server()` que configura y pone en marcha el servidor.
    - Se define la función `get_valid_port()` que solicita al usuario un número de puerto válido.
@@ -83,7 +83,7 @@ El código desarrollado se divide en dos partes: el Apartado 1.1 y Apartado 1.2.
 1. **Importación de módulos y definición de funciones:**
    - Se importan los módulos necesarios (`socket`, `sys`, `threading`).
    - Se define `print_lock` como un objeto de bloqueo (`Lock`) de threading.
-     **Objeto clave para solucinar el problema de impresión del Apartado 1.1, lo usaremos en cada impresion invocada dentro de un hilo**
+     **Objeto clave para solucinar el problema de impresión del Apartado 1.1, lo usaremos en cada impresión invocada dentro de un hilo.**
    - Se define la función `main()` que inicia la ejecución del cliente.
    - Se define la función `send_message()` que se encarga de enviar mensajes al servidor.
 
@@ -99,7 +99,7 @@ El código desarrollado se divide en dos partes: el Apartado 1.1 y Apartado 1.2.
    - Imprime la respuesta recibida del servidor.
    - Cierra la conexión con el servidor.
    - Destacar el uso de print_lock ya que será llamada por distintos hilos.
-   - <img width="595" alt="image" src="https://github.com/202006359/Practica-5-Multithreading/assets/113789409/b15de057-68d4-4a6b-b3f8-f77475877037">
+     <img width="595" alt="image" src="https://github.com/202006359/Practica-5-Multithreading/assets/113789409/b15de057-68d4-4a6b-b3f8-f77475877037">
 
 
 ## Ejecución del código 
