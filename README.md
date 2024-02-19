@@ -1,5 +1,6 @@
 # Practica 5 - Multithreading
 ## Introducción
+El objetivo de esta práctica es mejorar los mecanismos de comunicación entre cliente y servidor implementados en las prácticas anteriores utilizando multithreading.
 
 ## Explicación del código
 El código desarrollado se divide en dos partes: el Apartado 1.1 y Apartado 1.2. Ambos cuentan con un servidor y un simulador de clientes.
@@ -18,7 +19,7 @@ El código desarrollado se divide en dos partes: el Apartado 1.1 y Apartado 1.2.
 
 3. **Función `start_server()`**:
    - Configura el socket del servidor y lo pone a la escucha en el puerto especificado por el usuario.
-   - Acepta conexiones entrantes de clientes y lanza una hebra (`thread`) para manejar cada conexión.
+   - Acepta conexiones entrantes de clientes y lanza una hilo (`thread`) para manejar cada conexión.
 
 4. **Función `get_valid_port()`**:
    - Solicita al usuario un número de puerto válido en el rango especificado.
@@ -27,7 +28,7 @@ El código desarrollado se divide en dos partes: el Apartado 1.1 y Apartado 1.2.
    - Recibe los datos enviados por el cliente.
    - Divide el mensaje en el identificador del cliente y el mensaje en sí.
    - Imprime el mensaje recibido del cliente.
-     **Problema -> La impresión por pantalla se ve afectada por la propia concurrencia de los hilos. Se soluciona en el Apartado 1.2 **
+     **Problema -> La impresión por pantalla se ve afectada por la propia concurrencia de los hilos. Se soluciona en el Apartado 1.2**
    - Envía una respuesta de vuelta al cliente.
 
 #### 2. Simulador de clientes (`client.ipynb`)
@@ -39,7 +40,7 @@ El código desarrollado se divide en dos partes: el Apartado 1.1 y Apartado 1.2.
 2. **Función `main()`:**
    - Solicita al usuario la dirección IP del servidor y el puerto al que se conectará.
    - Iterativamente, solicita al usuario nombres de cliente y mensajes a enviar.
-   - Crea una hebra (`thread`) para cada mensaje introducido por el usuario y llama a la función `send_message()`.
+   - Crea una hilo (`thread`) para cada mensaje introducido por el usuario y llama a la función `send_message()`.
 
 3. **Función `send_message()`**:
    - Intenta establecer una conexión con el servidor usando el socket.
@@ -50,8 +51,51 @@ El código desarrollado se divide en dos partes: el Apartado 1.1 y Apartado 1.2.
 
 ### Apartado 1.2
 #### 1. Servidor (`server.ipynb`)
+1. **Importación de módulos y definición de funciones:**
+   - Se importan los módulos necesarios (`socket`, `sys`, `traceback`, `threading`).
+   - Se define `print_lock` como un objeto de bloqueo (`Lock`) de threading.
+     **Objeto clave para solucinar el porblema de impresion del Apartado 1.1, lo usaremos en cada impresion invocada dentro de un hilo**
+   - Se define la función `main()` que inicia la ejecución del servidor.
+   - Se define la función `start_server()` que configura y pone en marcha el servidor.
+   - Se define la función `get_valid_port()` que solicita al usuario un número de puerto válido.
+   - Se define la función `client_thread()` que maneja las conexiones de los clientes.
+
+2. **Función `main()`:**
+   - Llama a la función `start_server()` para iniciar el servidor.
+
+3. **Función `start_server()`**:
+   - Configura el socket del servidor y lo pone a la escucha en el puerto especificado por el usuario.
+   - Acepta conexiones entrantes de clientes y lanza una hilo (`thread`) para manejar cada conexión.
+
+4. **Función `get_valid_port()`**:
+   - Solicita al usuario un número de puerto válido en el rango especificado.
+
+5. **Función `client_thread()`**:
+   - Recibe los datos enviados por el cliente.
+   - Divide el mensaje en el identificador del cliente y el mensaje en sí.
+   - Imprime el mensaje recibido del cliente.
+     **Solución -> La impresión por pantalla se realizan con print locks**
+   - Envía una respuesta de vuelta al cliente.
 
 #### 2. Simulador de clientes (`client.ipynb`)
+1. **Importación de módulos y definición de funciones:**
+   - Se importan los módulos necesarios (`socket`, `sys`, `threading`).
+   - Se define `print_lock` como un objeto de bloqueo (`Lock`) de threading.
+     **Objeto clave para solucinar el porblema de impresion del Apartado 1.1, lo usaremos en cada impresion invocada dentro de un hilo**
+   - Se define la función `main()` que inicia la ejecución del cliente.
+   - Se define la función `send_message()` que se encarga de enviar mensajes al servidor.
+
+2. **Función `main()`:**
+   - Solicita al usuario la dirección IP del servidor y el puerto al que se conectará.
+   - Iterativamente, solicita al usuario nombres de cliente y mensajes a enviar.
+   - Crea una hilo (`thread`) para cada mensaje introducido por el usuario y llama a la función `send_message()`.
+
+3. **Función `send_message()`**:
+   - Intenta establecer una conexión con el servidor usando el socket.
+   - Envía el mensaje al servidor y espera una respuesta.
+   - Imprime un mensaje indicando si el mensaje se envió correctamente.
+   - Imprime la respuesta recibida del servidor.
+   - Cierra la conexión con el servidor.
 
 ## Ejecución del código 
 1. Abre una terminal o línea de comandos en tu sistema.
